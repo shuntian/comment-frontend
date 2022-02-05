@@ -24,6 +24,7 @@ class Articles extends React.Component {
 
   listArticles = (search) => {
     commentAPI.listArticles(search).then(res => {
+      console.log('add')
       const { articles } = res.data;
       this.setState({articles: articles});
     })
@@ -50,7 +51,10 @@ class Articles extends React.Component {
                 <TextField placeholder='搜索标题或内容' value={search_text}  onChange={this.onSearchValueChanged}/>
               </Grid>
               <Grid item xs={6}>
-                <Button color="primary" variant="contained" onClick={this.onSearchArticles}>Search!!!</Button>
+                <Button color="primary" style={{marginRight: "16px"}} variant="contained" onClick={this.onSearchArticles}>Search!!!</Button>
+                <Link to="/articles/insert">
+                  <Button color="primary" variant="contained">Create Article</Button>
+                </Link>
               </Grid>
             </Grid>
           </Card>

@@ -21,7 +21,7 @@ class ArticleDetail extends React.Component {
 
   componentDidMount() {
     const { id } = this.props.params;
-    commentAPI.getArticleContent(id).then(res => {
+    commentAPI.getArticle(id).then(res => {
       const { article } = res.data;
       this.setState({
         isLoaded: true,
@@ -55,6 +55,9 @@ class ArticleDetail extends React.Component {
     return (
       <div>
         <Container maxWidth="md">
+          <div>
+            <Link to="/articles">Back</Link>
+          </div>
           <Card style={{marginTop: '20px', marginBottom: '20px', background: "#f0f0f0"}}>
             <h1>{article.title}</h1>
             <h5>{article.subTitle}</h5>

@@ -15,9 +15,15 @@ class CommentAPI {
     return this.req.get(url);
   }
 
-  getArticleContent(id) {
+  getArticle(id) {
     const url = '/articles/' + id;
     return this.req.get(url);
+  }
+
+  addArticle(article) {
+    const url = '/articles';
+    const data = { article };
+    return this.req.post(url, data, {headers: {'Content-Type': 'application/json'}});
   }
 
   addComment(id, comment) {
