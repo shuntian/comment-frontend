@@ -1,6 +1,6 @@
 import { AppBar, Box, Button, Container, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const propTypes = {
 
@@ -44,13 +44,9 @@ class App extends React.Component {
               </Toolbar>
             </AppBar>
           </Container>
-          <Container maxWidth="fixed">
-            <Grid container spacing={2}>
-              <Grid item xs={8}>
-              </Grid>
-              <Grid item xs={4}>ee</Grid>
-            </Grid>
-          </Container>
+          <div style={{width: "100%", height: "100%", position: 'absolute', top: '52px', margin: '20px'}}>
+            <Outlet style={{with: "100%"}} />
+          </div>
         </Container>
       </div>
     );
