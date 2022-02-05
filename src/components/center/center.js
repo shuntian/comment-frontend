@@ -9,7 +9,7 @@ class Center extends React.Component {
 
   render() {
     return (
-      <div style={{with: '100%', height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
         {this.props.children}
       </div>
     );

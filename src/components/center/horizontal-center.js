@@ -9,7 +9,7 @@ class HorizontalCenter extends React.Component {
 
   render() {
     return (
-      <div style={{with: '100%', height: "100%", display: "flex", justifyContent: "center"}}>
+      <div style={{display: "flex", justifyContent: "center"}}>
         {this.props.children}
       </div>
     );

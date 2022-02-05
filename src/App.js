@@ -28,7 +28,7 @@ class App extends React.Component {
                   component="div"
                   sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                 >
-                  ShunTian
+                  <Link to="/" style={{color: 'white'}}>ShunTian</Link>
                 </Typography>
                 <div style={{marginLeft: "16px"}}>
                   <Link to="/articles" style={{color: 'white'}}>Articles</Link>
