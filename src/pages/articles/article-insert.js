@@ -43,7 +43,7 @@ class ArticleInsert extends React.Component {
   render() {
 
     return (
-      <div style={{marginTop: "300px"}}>
+      <div style={{marginTop: "50px"}}>
         <Container style={{maxWidth: "680px", marginBottom: "20px"}}>
           <h3 style={{textAlign: 'center'}}> 添加文章 </h3>
           <Grid container style={{marginBottom: "20px"}}>
@@ -77,7 +77,7 @@ class ArticleInsert extends React.Component {
             <Grid item xs={10}>
               <TextareaAutosize 
                 style={{width: "100%"}} 
-                minRows={10} 
+                minRows={40} 
                 name="content" 
                 value={this.state.content}
                 onChange={this.handleValueChanged("content")}
