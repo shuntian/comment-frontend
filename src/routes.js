@@ -14,8 +14,8 @@ const AppRouters = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
-          <Route path='/' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+          <Route path='/' element={<WrapComps el={Login} />} />
+          <Route path='/register' element={<WrapComps  el={Register} />} />
           <Route path='/articles' element={<Articles />} />
           <Route path='/articles/:id' element={<WrapComps el={ArticleDetail} />} />
           <Route path='/articles/:id/edit' element={<WrapComps el={ArticleEdit} />} />

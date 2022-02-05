@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, OutlinedInput } from '@material-ui/core';
+import { Button, Card, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, OutlinedInput } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { Center } from '../components/center';
 import { Link } from 'react-router-dom';
+import commentAPI from '../api';
 
 const propTypes = {
 
@@ -11,21 +12,48 @@ const propTypes = {
 
 class Register extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isShowPassword: false,
+      name: '',
+      nickname: '',
+      email: '',
+      password: '',
+    }
+  }
 
-  handleChange = () => {
 
+  handleChange = (type) => {
+    return (event) => {
+      const value = event.target.value;
+      this.setState({[type]: value});
+    }
   }
 
   handleClickShowPassword = () => {
-
+    this.setState({isShowPassword: !this.state.isShowPassword});
   }
 
   handleMouseDownPassword = () => {
 
   }
 
+  register = () => {
+    const { name, nickname, email, password } = this.state;
+    commentAPI.register(name, nickname, email, password).then(res => {
+      const { code } = res.data;
+      if (code === 0) {
+        const navigate = this.props.navigate;
+        navigate('/articles');
+      }
+    }).catch( err => {
+      console.log(err);
+    })
+  }
+
   render() {
-    const values = {};
+    const { isShowPassword, name, nickname, email, password } = this.state;
     return (
       <Center>
         <Card style={{background: "#f0f0f0", padding: "20px", minWidth: "500px"}}>
@@ -35,9 +63,9 @@ class Register extends React.Component {
               <FormControl fullWidth variant="outlined">
                 <InputLabel htmlFor="standard-adornment-name">name</InputLabel>
                 <OutlinedInput
-                  id="outlined-adornment-email"
-                  value={values.weight}
-                  onChange={this.handleChange}
+                  id="outlined-adornment-name"
+                  value={name}
+                  onChange={this.handleChange('name')}
                   aria-describedby="outlined-weight-helper-text"
                   inputProps={{
                     'aria-label': 'weight',
@@ -51,8 +79,8 @@ class Register extends React.Component {
                 <InputLabel htmlFor="standard-adornment-nickname">nickname</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-nickname"
-                  value={values.weight}
-                  onChange={this.handleChange}
+                  value={nickname}
+                  onChange={this.handleChange('nickname')}
                   aria-describedby="outlined-weight-helper-text"
                   inputProps={{
                     'aria-label': 'weight',
@@ -66,8 +94,8 @@ class Register extends React.Component {
                 <InputLabel htmlFor="standard-adornment-email">email</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-email"
-                  value={values.weight}
-                  onChange={this.handleChange}
+                  value={email}
+                  onChange={this.handleChange('email')}
                   aria-describedby="outlined-weight-helper-text"
                   inputProps={{
                     'aria-label': 'weight',
@@ -81,9 +109,9 @@ class Register extends React.Component {
                 <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                 <OutlinedInput
                   id="standard-adornment-password"
-                  type={values.showPassword ? 'text' : 'password'}
-                  value={values.password}
-                  onChange={this.handleChange}
+                  type={isShowPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={this.handleChange('password')}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -91,7 +119,7 @@ class Register extends React.Component {
                         onClick={this.handleClickShowPassword}
                         onMouseDown={this.handleMouseDownPassword}
                       >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                        {isShowPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
                     </InputAdornment>
                   }
@@ -99,7 +127,7 @@ class Register extends React.Component {
               </FormControl>
             </div>
             <div style={{position: "relative", display: 'flex', justifyContent: 'center', alignItems: "center", marginTop: '16px'}}>
-              <Input style={{marginRight: "30px"}} color="primary" type="submit" value="注册"></Input>
+              <Button style={{marginRight: "30px"}} color="primary" onClick={this.register}>注册</Button>
             </div>
           </form>
         </Card>

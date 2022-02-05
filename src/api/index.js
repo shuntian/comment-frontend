@@ -6,6 +6,26 @@ class CommentAPI {
     this.req = axios.create({baseURL: 'http://127.0.0.1:8000'});
   }
 
+  login(email, password) {
+    const url = '/users/login';
+    const data = {
+      email,
+      password
+    }
+    return this.req.post(url, data);
+  }
+  
+  register(name, nickname, email, password) {
+    const url = '/users/register';
+    const data = {
+      name,
+      nickname,
+      email,
+      password
+    }
+    return this.req.post(url, data);
+  }
+
   listArticles (search_text) {
     let url = '/articles';
     if (search_text) {

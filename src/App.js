@@ -13,13 +13,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
   }
 
   render() {
     return (
       <div>
         <Container>
-          <Container maxWidth="fixed">
+          <Container maxWidth="md">
             <AppBar>
               <Toolbar variant="dense">
                 <Typography
@@ -35,10 +36,10 @@ class App extends React.Component {
                 </div>
                 <div style={{display: 'flex', position: 'absolute', right: '24px'}}>
                   <div style={{marginLeft: "16px", cursor: 'pointer'}}>
-                    <Link to="/login" style={{color: 'white'}}>Login</Link>
+                    <Link to="/" style={{color: 'white'}}>Login</Link>
                   </div>
                   <div style={{marginLeft: "16px", cursor: 'pointer'}}>
-                    <Link to="/Register" style={{color: 'white'}}>Register</Link>
+                    <Link to="/register" style={{color: 'white'}}>Register</Link>
                   </div>
                 </div>
               </Toolbar>
