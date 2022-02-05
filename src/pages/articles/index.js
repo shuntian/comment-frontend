@@ -19,16 +19,24 @@ class Articles extends React.Component {
   }
 
   componentDidMount() {
-    commentAPI.listArticles().then(res => {
+    this.listArticles();
+  }
+
+  listArticles = (search) => {
+    commentAPI.listArticles(search).then(res => {
       const { articles } = res.data;
-      this.setState({
-        articles: articles
-      });
+      this.setState({articles: articles});
     })
   }
 
-  onViewArticle = (id) => {
-    
+  onSearchValueChanged = (event) => {
+    const value = event.target.value;
+    this.setState({search_text: value})
+  }
+
+  onSearchArticles = () => {
+    const { search_text } = this.state;
+    this.listArticles(search_text);
   }
 
   render() {
@@ -39,10 +47,10 @@ class Articles extends React.Component {
           <Card style={{padding: '20px'}}>
             <Grid container>
               <Grid item xs={6}>
-                <TextField placeholder='搜索标题或内容' value={search_text}  onChange={this.onSearchArticles}/>
+                <TextField placeholder='搜索标题或内容' value={search_text}  onChange={this.onSearchValueChanged}/>
               </Grid>
               <Grid item xs={6}>
-                <Button color="primary" variant="contained">Search!!!</Button>
+                <Button color="primary" variant="contained" onClick={this.onSearchArticles}>Search!!!</Button>
               </Grid>
             </Grid>
           </Card>

@@ -6,8 +6,12 @@ class CommentAPI {
     this.req = axios.create({baseURL: 'http://127.0.0.1:8000'});
   }
 
-  listArticles () {
-    const url = '/articles/';
+  listArticles (search_text) {
+    let url = '/articles';
+    if (search_text) {
+      url = '/articles?search_text=' + search_text;;
+
+    }
     return this.req.get(url);
   }
 
