@@ -3,7 +3,7 @@ import axios from "axios";
 class CommentAPI {
 
   constructor() {
-    this.req = axios.create({baseURL: 'http://127.0.0.1:8000'});
+    this.req = axios.create({baseURL: 'http://127.0.0.1:8000/api/v1/'});
   }
 
   login(email, password) {
